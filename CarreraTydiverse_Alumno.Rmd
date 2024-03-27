@@ -380,7 +380,7 @@ library(dplyr)
   mutate(size_mb = size / (2^20))
 ```
 
-27. Selecciona aquellas descargas cuyo tamaño es menor o igual que 0.5 Mbytes
+27. Selecciona aquellas descargas cuyo tamaño es menor o igual que 0.5 Mbytes.
 ```{r}
 library(dplyr)
 
@@ -395,13 +395,9 @@ library(dplyr)
 anterior %>% filter(size_mb <= 0.5) %>% arrange(desc(size_mb)) 
 ```
 **EXTRA**. Se desea mostar gráficamente aquellos países que suponen el mayor tráfico de información, ocasionado por el total de descargas acumuladas. Para facilitar la visualización céntrate en aquellos que están por encima del 90 % del top de descargas. El gráfico debe mostrar los valores de forma ordenada de mayor a menor. En el eje X debe aparecer el código de país y en el eje Y el tráfico generado. Intenta hacerlo usando una tubería sin emplear ninguna variable auxiliar.
-`cran%>%...+geom_point()`
+`cran%>%...+geom_point()`.
 
 ```{r}
-
-
-
-
 ```
 **EXTRA** Tal como se indica en el ejercicio, el significado de los códigos usados para la codificación de los paise se pueden obtener de https://dev.maxmind.com/geoip/geoip2/geolite2/. Descarga el fichero **GeoLite2 Country** en formato CSV. Este fichero contiene información en varios idiomas. Usa `GeoLite2-Country-Locations-es.csv` que tiene la información en español. Deseamos poder determinar las descargas por continentes por lo que necesitamos añadir esta información a los datos de las descargas almacenados en `cran`. Procede de la siguiente forma:
 
@@ -413,23 +409,17 @@ anterior %>% filter(size_mb <= 0.5) %>% arrange(desc(size_mb))
  + Representa un diagrama de barras con el flujo de datos, por continente, ordenados de mayor a menor. Expresa el flujo de datos en Terabytes (1Tb=2^40bytes)
  
 ```{r}
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```
 
 # tidyr.
 Carga el fichero de datos `datostidyr.Rdata` que contiene varios conjuntos de datos que vamos a usar en los siguientes ejercicios.
+```{r}
+# Cargamos el fichero:
+data <- load(file ="data/datostidyr.Rdata")
+head (data)
+summary (data)
+```
+
 
 29. Observa el data frame `students` :
   grade male female
