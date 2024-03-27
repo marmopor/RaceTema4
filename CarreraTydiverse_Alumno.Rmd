@@ -275,13 +275,21 @@ avg_bytes <- summarise(cran, avg_bytes = mean(size))
 
 19. Crea un agrupamiento del tibble `cran` según la variable `package` y almacénalo en la variable `by_package`. Observa el nuevo elemento creado y aunque aparentemente no hay cambio al principio, se indica que se ha hecho un agrupamiento. Éste agrupamiento se puede deshacer con la función `ungroup`.
 ```{r}
+library(dplyr)
 
+#Crear un agrupamiento: 
+by_package <- group_by(cran, package)
 
+#Deshacer el agrupamiento:
+#by_package <- ungroup(by_package)
 ```
 
 20. Usa la función `summarise` sobre  el elemento agrupado y calcula  el valor medio de la variable `size`. Observa el efecto del agrupamiento en el resultado.
 ```{r}
+library(dplyr)
 
+#Calcular el valor medio de la variable size sobre el element. agrupado:
+avg_size_by_package <- summarise(by_package, avg_size = mean(size))
 ```
 21. Para el agrupamiento creado calcula: 
 + . count = n()
