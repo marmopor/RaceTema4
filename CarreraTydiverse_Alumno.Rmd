@@ -345,21 +345,29 @@ library(dplyr)
 24. En lugar de utilizar el recuento de descargas, es más lógico considerar el número de ordenadores distintos en los que se han descargado las librerías, para ello utilizaríamos la columna `unique` que cuenta solo una descarga por ordenador, independientemente del número de veces que se descarge una librería. Repite los cálculos considerando esta variable y almacena el resultado en `top_unique_sorted`.
 
 ```{r}
+library(dplyr)
 
+#Calcular el umbral por número de ordenadores distintos:
+  umbral_unique <- cran %>%
+  count(package, ip_id) %>%
+  count(package) %>%
+  summarise(umbral_unique = quantile(n, probs = 0.99))
 
-
-
-
-
-
-
+#Seleccionar los paquetes más descargados por número de ordenadores distintos
+#(top_unique) y ordenar en orden descendente:
+  top_unique_sorted <- cran %>%
+  count(package, ip_id) %>%
+  count(package) %>%
+  filter(n >= umbral_unique$umbral_unique) %>%
+  arrange(desc(n))
 ```
 25. Completa lo que se indica  usando `pipes`. Selecciona las columnas `ip_id, country, package, size` de `cran` y muestra el resultado por pantalla usando `print`. No es necesario almacenar.
 
 ```{r}
+library(dplyr)
 
-
-
+#Seleccionar las columnas ip_id, country, package, size: 
+  cran %>% select(ip_id, country, package, size) %>% print()
 ```
 
 26. Añade una columna llamada `size_mb` que contenga el tamaño de cada descarga en megabytes.
